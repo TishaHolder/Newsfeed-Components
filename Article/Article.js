@@ -118,6 +118,8 @@ const data = [
 
     {three separate paragraph elements}
 
+    <div class = "close-button"> close button</div>//***stretch task
+
     <span class='expandButton'></span>
   </div>
 
@@ -136,7 +138,6 @@ const data = [
 */
 
 function articleCreator (articleObject) {
-
   
   let divArticle = document.createElement("div");
   divArticle.classList.add("article");
@@ -160,6 +161,16 @@ function articleCreator (articleObject) {
   thirdParagraph.textContent = articleObject.thirdParagraph;
   thirdParagraph.classList.add("article-content");
 
+  //*************STRETCH TASK - CLOSE BUTTON***********/
+  let closeButton = document.createElement("button");
+  closeButton.classList.add("close-button");
+  closeButton.textContent = "Close";
+
+  closeButton.addEventListener("click", (event) => {
+    divArticle.classList.toggle("article-close");
+      
+  });
+
   let expandButton = document.createElement("span");
   expandButton.textContent = "Expand";
   expandButton.classList.add("expandButton");
@@ -175,6 +186,7 @@ function articleCreator (articleObject) {
   divArticle.appendChild(firstParagraph);
   divArticle.appendChild(secondParagraph);
   divArticle.appendChild(thirdParagraph);
+  divArticle.appendChild(closeButton);
   divArticle.appendChild(expandButton);
   
 
@@ -193,7 +205,7 @@ const articleDataArray = data.map (article => {
 
 articleDataArray.forEach(article => {
   articleContainer.appendChild(article);
-})
+});
 
 
 
