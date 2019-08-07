@@ -40,10 +40,10 @@ function menuCreator(array) {
   divMenu.classList.add("menu");
 
   let menuUL = document.createElement("UL");
- 
+   
   array.forEach ( arrayItem => {
     let menuItem = document.createElement("LI");
-    menuItem.textContent = arrayItem;
+    menuItem.textContent = arrayItem;    
 
     menuUL.appendChild(menuItem);
 
@@ -66,8 +66,8 @@ function menuCreator(array) {
 
 let newMenu = menuCreator(menuItems);
 
-let menuButton = document.querySelector(".menu-button");
-menuButton.appendChild(newMenu);
+let menuPanel = document.querySelector(".articles");
+menuPanel.appendChild(newMenu);
 
 console.log(newMenu);
 
