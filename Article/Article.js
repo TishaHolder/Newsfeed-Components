@@ -85,8 +85,30 @@ const data = [
     thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
+  },
+  {
+    title: 'New Article 1',
+    date: 'August 7th, 2019',
+    firstParagraph: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur saepe magnam dolores fugit fuga numquam repudiandae quo unde, id iure ducimus cupiditate expedita, explicabo in ut quaerat. Deserunt, consequatur nam. `,
+
+    secondParagraph: `Gotta catch 'em all Horsea gym Ninjask Absol Sinnoh Poliwag. Gotta catch 'em all Youngster wants to fight Soda Pop Floatzel 
+    Leech Life Seismitoad Ariados. Earthquake Pokemon Glitch City Tail Whip Skitty Ekans Dialga. Ut aliquip ex ea commodo consequat James Castform Lotad the power that's inside Burnt Berry Makuhita. Ghost Ariados Corphish Dusclops Golbat Gligar Zweilous. `,
+
+    thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor! Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor. Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
+  },
+  {
+    title: 'New Article 2',
+    date: 'August 7th, 2019',
+    firstParagraph: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur saepe magnam dolores fugit fuga numquam repudiandae quo unde, id iure ducimus cupiditate expedita, explicabo in ut quaerat. Deserunt, consequatur nam. `,
+
+    secondParagraph: `Gotta catch 'em all Horsea gym Ninjask Absol Sinnoh Poliwag. Gotta catch 'em all Youngster wants to fight Soda Pop Floatzel 
+    Leech Life Seismitoad Ariados. Earthquake Pokemon Glitch City Tail Whip Skitty Ekans Dialga. Ut aliquip ex ea commodo consequat James Castform Lotad the power that's inside Burnt Berry Makuhita. Ghost Ariados Corphish Dusclops Golbat Gligar Zweilous. `,
+
+    thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor! Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor. Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
   }
 ];
+
+
 
 /* Step 1: Create a function that creates a component. You will want your component to look like the template below: 
   
@@ -95,6 +117,8 @@ const data = [
     <p class="date">{date of the article}</p>
 
     {three separate paragraph elements}
+
+    <div class = "close-button"> close button</div>//***stretch task
 
     <span class='expandButton'></span>
   </div>
@@ -112,3 +136,78 @@ const data = [
   Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new artible
 
 */
+
+function articleCreator (articleObject) {
+  
+  let divArticle = document.createElement("div");
+  divArticle.classList.add("article");
+
+  let headerH2 = document.createElement("h2");
+  headerH2.textContent = articleObject.title;
+ 
+  let dateParagraph = document.createElement("paragraph");
+  dateParagraph.textContent = articleObject.date;
+  dateParagraph.classList.add("date");
+
+  let firstParagraph = document.createElement("p");
+  firstParagraph.textContent = articleObject.firstParagraph;
+  firstParagraph.classList.add("article-content");
+
+  let secondParagraph = document.createElement("p");
+  secondParagraph.textContent = articleObject.secondParagraph;
+  secondParagraph.classList.add("article-content");
+
+  let thirdParagraph = document.createElement("p");
+  thirdParagraph.textContent = articleObject.thirdParagraph;
+  thirdParagraph.classList.add("article-content");
+
+  //*************STRETCH TASK - CLOSE BUTTON***********/
+  let closeButton = document.createElement("button");
+  closeButton.classList.add("close-button");
+  closeButton.textContent = "Close";
+
+  closeButton.addEventListener("click", (event) => {
+    divArticle.classList.toggle("article-close");
+      
+  });
+
+  let expandButton = document.createElement("span");
+  expandButton.textContent = "Expand";
+  expandButton.classList.add("expandButton");
+
+  expandButton.addEventListener("click", (event) => {
+    
+    divArticle.classList.toggle("article-open");
+
+  });
+
+  divArticle.appendChild(headerH2);
+  divArticle.appendChild(dateParagraph);
+  divArticle.appendChild(firstParagraph);
+  divArticle.appendChild(secondParagraph);
+  divArticle.appendChild(thirdParagraph);
+  divArticle.appendChild(closeButton);
+  divArticle.appendChild(expandButton);
+  
+
+  return divArticle;
+
+}
+
+let articleContainer = document.querySelector(".articles");
+
+const articleDataArray = data.map (article => {
+  let newArticle = articleCreator(article);
+
+  return newArticle;
+
+});
+
+articleDataArray.forEach(article => {
+  articleContainer.appendChild(article);
+});
+
+
+
+
+
